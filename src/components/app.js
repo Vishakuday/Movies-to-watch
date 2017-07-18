@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
 
 export default class App extends Component {
+	
+	submithandler=(e)={
+		e.preventDefault();
+	}
+	
   render() {
     return (
-      <div>React simple starter</div>
+	<form>
+      <input placeholder="enter the movie that you want to watch">
+	  <button type="submit">Submit</button>
+	</form>
     );
   }
 }
