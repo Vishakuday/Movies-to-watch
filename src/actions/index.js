@@ -6,9 +6,11 @@ const base_url='https://api.themoviedb.org/3/search/movie?api_key=a4c1cf67424703
 
 
 function createmovie(response) {
-  let movieobj= {name:response.title,rating:response.vote_average,popularity:response.popularity,poster:response.poster_path}
+	console.log("here",response['title']);
+  let movieobj= {name:response['title'],rating:response['vote_average'],popularity:response['popularity'],poster:response['poster_path'],completed:false}
+  console.log(movieobj);
   return {
-    type: 'WITHDRAW',
+    type: 'ADDMOVIE',
 	payload:movieobj   
   };
 }
@@ -16,9 +18,11 @@ function createmovie(response) {
 
 export function registermovie(movie){
 	return (dispatch)=>{
-		const request= axios.get(`baseurl${movie}`)
-		request.then(response){
+		console.log(`${base_url}${movie}`);
+		const request= axios.get(`${base_url}${movie}`)
+		request.then((response)=>{
+			//console.log(response.data.results[0]);
 			dispatch(createmovie(response.data.results[0]))
-		}
+		})
 	}
 }
