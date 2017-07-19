@@ -10,8 +10,8 @@ constructor(props){
 submithandler=(e)={
 e.preventDefault();	
 //call action creator.....
-
-this.setState({movie:''});	
+this.props.logmovie(this.state.movie);
+this.setState({movie:''});
 }
 
 changehandler=(e)=>{
